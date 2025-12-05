@@ -1,0 +1,8 @@
+spring:
+  liquibase:
+    contexts: prod
+    change-log: classpath:db/changelog/master.xml
+  datasource:
+    url: jdbc:mysql://localhost:3306/habits
+    username: root
+    password: admin
