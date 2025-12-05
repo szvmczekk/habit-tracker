@@ -17,10 +17,9 @@ public class Task {
     private boolean done;
     private LocalDateTime creationDate;
 
-    public Task(String name, String description, boolean done) {
+    public Task(String name, String description) {
         this.name = name;
         this.description = description;
-        this.done = done;
         this.creationDate = LocalDateTime.now();
     }
 
