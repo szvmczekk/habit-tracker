@@ -6,5 +6,17 @@
 </head>
 <body>
     <h1>Witaj w aplikacji Habit Tracker!</h1>
+
+    <div th:unless="${tasks.isEmpty()}">
+        <div th:each="task,pointer: ${tasks}" th:object="${task}">
+            <p th:text="|(${pointer.count}) Nazwa: *{name} Opis: *{description}|"/>
+        </div>
+    </div>
+
+    <div th:if="${tasks.isEmpty()}">
+        <h1>Nie dodales jeszcze zadnego zadania!</h1>
+    </div>
+
+    <a href="#" th:href="@{/add}">Dodaj zadanie</a>
 </body>
 </html>

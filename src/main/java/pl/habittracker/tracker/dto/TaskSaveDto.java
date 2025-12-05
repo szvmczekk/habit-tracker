@@ -9,6 +9,9 @@ public class TaskSaveDto {
         this.description = description;
     }
 
+    public TaskSaveDto() {
+    }
+
     public String getName() {
         return name;
     }
