@@ -1,5 +1,6 @@
 package pl.habittracker.tracker;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import pl.habittracker.tracker.dto.TaskSaveDto;
 
@@ -32,5 +33,9 @@ public class TaskService {
         taskRepository.save(mappedTask);
     }
 
-
+    @Transactional
+    void changeState(Long id){
+        taskRepository.findById(id)
+                .ifPresent(task -> task.setDone(!task.isDone()));
+    }
 }

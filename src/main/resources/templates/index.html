@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <title>Habit Tracker</title>
 </head>
+<style>
+    .done {
+        text-decoration: line-through;
+    }
+</style>
 <body>
     <h1>Witaj w aplikacji Habit Tracker!</h1>
 
     <div th:unless="${tasks.isEmpty()}">
         <div th:each="task,pointer: ${tasks}" th:object="${task}">
-            <p th:text="|(${pointer.count}) Nazwa: *{name} Opis: *{description}|"/>
+            <form action="#" th:action="|@{/change/}*{id}|" method="post">
+            <button type="submit">Zmien</button>
+            <p th:text="|(${pointer.count}) Nazwa: *{name} Opis: *{description}|" th:class="${task.done ? 'done' : ''}"/>
+            </form>
         </div>
     </div>
 

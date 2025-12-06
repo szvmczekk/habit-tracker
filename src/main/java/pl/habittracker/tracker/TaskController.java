@@ -14,6 +14,12 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    @PostMapping("/change/{id}")
+    String changeState(@PathVariable Long id){
+        taskService.changeState(id);
+        return "redirect:/";
+    }
+
     @GetMapping("/")
     String home(Model model){
         model.addAttribute("tasks", taskService.findAllTasks());
