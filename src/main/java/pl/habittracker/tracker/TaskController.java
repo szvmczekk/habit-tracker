@@ -8,7 +8,7 @@ import pl.habittracker.tracker.dto.TaskSaveDto;
 @Controller
 public class TaskController {
     private final TaskService taskService;
-    private final static TaskSaveDto taskSkeleton = new TaskSaveDto();
+    private final static TaskSaveDto taskSaveSkeleton = new TaskSaveDto();
 
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
@@ -28,7 +28,7 @@ public class TaskController {
 
     @GetMapping("/add")
     String addTaskPage(Model model){
-        model.addAttribute("task", taskSkeleton);
+        model.addAttribute("task", taskSaveSkeleton);
         return "add";
     }
 

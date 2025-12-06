@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Habit Tracker</title>
+    <link rel="stylesheet" href="/styles/main.css" th:href="@{/styles/main.css}">
 </head>
-<style>
-    .done {
-        text-decoration: line-through;
-    }
-</style>
 <body>
-    <h1>Witaj w aplikacji Habit Tracker!</h1>
+<main class="container">
+    <h1 class="title">Witaj w aplikacji Habit Tracker!</h1>
 
-    <div th:unless="${tasks.isEmpty()}">
+    <div th:unless="${tasks.isEmpty()}" class="tasks">
         <div th:each="task,pointer: ${tasks}" th:object="${task}">
-            <form action="#" th:action="|@{/change/}*{id}|" method="post">
-            <button type="submit">Zmien</button>
-            <p th:text="|(${pointer.count}) Nazwa: *{name} Opis: *{description}|" th:class="${task.done ? 'done' : ''}"/>
+            <form action="#" th:action="|@{/change/}*{id}|" method="post" class="taskContainer">
+                <div class="taskContent">
+                    <p class="taskTitle" th:text="|*{name}|" th:class="${task.done ? 'completed' : 'notcompleted'}"/>
+                    <p class="taskDescription" th:text="*{description}"/>
+                </div>
+                <button type="submit" class="taskButton">Zmień</button>
             </form>
         </div>
     </div>
+
 
     <div th:if="${tasks.isEmpty()}">
         <h1>Nie dodales jeszcze zadnego zadania!</h1>
     </div>
 
-    <a href="#" th:href="@{/add}">Dodaj zadanie</a>
+    <a href="#" th:href="@{/add}">+</a>
+</main>
 </body>
 </html>
